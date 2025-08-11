@@ -8,7 +8,9 @@ Vite
 Package Bundler:
 PNPM
 Install here: https://pnpm.io/installation
+```
 Commands for project:
-CD TellTaleNeumont
+CD telltaleneumont
 pnpm i
 pnpm run dev
+```
