@@ -10,7 +10,7 @@ PNPM
 Install here: https://pnpm.io/installation
 ```
 Commands for project:
-CD telltaleneumont
+CD ./telltaleneumont
 pnpm i
 pnpm run dev
 ```
