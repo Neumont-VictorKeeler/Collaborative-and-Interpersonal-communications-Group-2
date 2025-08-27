@@ -1,6 +1,7 @@
 "use client"; // needed since it uses state
 
 import { JSX, useState } from "react";
+import StartNode from "./StartNode";
 import GoodPath1 from "./GoodRoute/GoodPath1";
 import GoodPath2 from "./GoodRoute/GoodPath2";
 import GoodPath3 from "./GoodRoute/GoodPath3";
@@ -18,18 +19,19 @@ export default function Navigator() {
 
   // Map IDs to page components
   const pages: Record<number, JSX.Element> = {
-    1: <GoodPath1 />,
-    2: <GoodPath2 />,
-    3: <GoodPath3 />,
-    4: <GoodEnding />,
-    5: <NeutralPath1 />,
-    6: <NeutralPath2 />,
-    7: <NeutralPath3 />,
-    8: <NeutralEnding />,
-    9: <BadPath1 />,
-    10: <BadPath2 />,
-    11: <BadPath3 />,
-    12: <BadEnding />,
+    1: <StartNode />,
+    2: <GoodPath1 />,
+    3: <GoodPath2 />,
+    4: <GoodPath3 />,
+    5: <GoodEnding />,
+    6: <NeutralPath1 />,
+    7: <NeutralPath2 />,
+    8: <NeutralPath3 />,
+    9: <NeutralEnding />,
+    10: <BadPath1 />,
+    11: <BadPath2 />,
+    12: <BadPath3 />,
+    13: <BadEnding />,
 
   };
   const totalPages = Object.keys(pages).length;
