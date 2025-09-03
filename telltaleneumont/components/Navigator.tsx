@@ -14,12 +14,15 @@ import BadPath1 from "./BadRoute/BadPath1";
 import BadPath2 from "./BadRoute/BadPath2";
 import BadPath3 from "./BadRoute/BadPath3";
 import BadEnding from "./BadRoute/BadEnding";
+import StartStory from "./StartStory"
 export default function Navigator() {
-  const [activePage, setActivePage] = useState<number>(1);
+  const [activePage, setActivePage] = useState<number>(0);
 
   // Map IDs to page components
   const pages: Record<number, JSX.Element> = {
-    1: <StartNode />,
+    
+    0: <StartNode />,
+    1: <StartStory />,
     2: <GoodPath1 />,
     3: <GoodPath2 />,
     4: <GoodPath3 />,
@@ -31,13 +34,12 @@ export default function Navigator() {
     10: <BadPath1 />,
     11: <BadPath2 />,
     12: <BadPath3 />,
-    13: <BadEnding />,
-
+    13: <BadEnding />
   };
-  const totalPages = Object.keys(pages).length;
+  const totalPages = Object.keys(pages).length -1;
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = Number(e.target.value);
-    if (!isNaN(value) && value >= 1 && value <= totalPages) {
+    if (!isNaN(value) && value >= 0 && value <= totalPages) {
       setActivePage(value);
     }
   };
@@ -45,15 +47,15 @@ export default function Navigator() {
     <div>
       <div style={{ display: "flex", gap: "1rem", marginBottom: "1rem" }}>
         <button
-          onClick={() => setActivePage((p) => Math.max(1, p - 1))}
-          disabled={activePage === 1}
+          onClick={() => setActivePage((p) => Math.max(0, p - 1))}
+          disabled={activePage === 0}
         >
           Back
         </button>
 
         <input
           type="number"
-          min={1}
+          min={0}
           max={totalPages}
           value={activePage}
           onChange={handleInputChange}
