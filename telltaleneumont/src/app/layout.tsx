@@ -28,7 +28,7 @@ export default function RootLayout({
       >
         <nav></nav>
         {children}
-        <footer>© 2025 Neutales</footer>
+        <footer className="bg-black text-yellow-300 text-center ">© 2025 Neutales</footer>
       </body>
     </html>
   );

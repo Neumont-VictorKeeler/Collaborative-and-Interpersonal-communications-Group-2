@@ -9,7 +9,7 @@ function goTo(page: number) {
   inp.dispatchEvent(new Event("change", { bubbles: true }));
 }
 
-export default function BadPath2() {
+export default function BadPath2({ goTo }: { goTo: (page: number) => void }) {
   const [picked, setPicked] = useState<Choice | null>(null);
 
   const choices: Choice[] = [
@@ -23,9 +23,7 @@ export default function BadPath2() {
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start w-full max-w-3xl">
         <div className="flex w-full items-baseline justify-between">
           <div>
-            <div className="text-xs uppercase tracking-wider text-[#9aa3b2]">Node: NB2</div>
             <h1 className="mt-1 text-2xl font-bold">Neumont: Week 1</h1>
-            <p className="text-sm text-[#9aa3b2]">Bad Path • Beat 2</p>
           </div>
           <span className="text-xs text-[#9aa3b2] border border-[#242935] rounded-full px-2 py-1">CYOA • v1</span>
         </div>
@@ -65,7 +63,7 @@ export default function BadPath2() {
                     onClick={() => goTo(picked.goToPage)}
                     className="rounded-xl px-4 py-2 font-semibold bg-[#F9A602] text-[#0b0b0c]"
                   >
-                    Continue → Page {picked.goToPage}
+                    Continue
                   </button>
                   <button
                     onClick={() => setPicked(null)}

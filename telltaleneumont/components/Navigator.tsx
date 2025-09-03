@@ -16,61 +16,30 @@ import BadPath3 from "./BadRoute/BadPath3";
 import BadEnding from "./BadRoute/BadEnding";
 import StartStory from "./StartStory"
 export default function Navigator() {
-  const [activePage, setActivePage] = useState<number>(0);
+    const [currentPage, setCurrentPage] = useState(1);
 
   // Map IDs to page components
   const pages: Record<number, JSX.Element> = {
     
-    0: <StartNode />,
-    1: <StartStory />,
-    2: <GoodPath1 />,
-    3: <GoodPath2 />,
-    4: <GoodPath3 />,
+    0: <StartNode goTo={setCurrentPage} />,
+    1: <StartStory goTo={setCurrentPage}/>,
+    2: <GoodPath1 goTo={setCurrentPage} />,
+    3: <GoodPath2 goTo={setCurrentPage} />,
+    4: <GoodPath3 goTo={setCurrentPage} />,
     5: <GoodEnding />,
-    6: <NeutralPath1 />,
-    7: <NeutralPath2 />,
-    8: <NeutralPath3 />,
-    9: <NeutralEnding />,
-    10: <BadPath1 />,
-    11: <BadPath2 />,
-    12: <BadPath3 />,
-    13: <BadEnding />
+    6: <NeutralPath1 goTo={setCurrentPage} />,
+    7: <NeutralPath2 goTo={setCurrentPage} />,
+    8: <NeutralPath3 goTo={setCurrentPage} />,
+    9: <NeutralEnding/>,
+    10: <BadPath1 goTo={setCurrentPage} />,
+    11: <BadPath2 goTo={setCurrentPage} />,
+    12: <BadPath3 goTo={setCurrentPage} />,
+    13: <BadEnding />,
   };
-  const totalPages = Object.keys(pages).length -1;
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = Number(e.target.value);
-    if (!isNaN(value) && value >= 0 && value <= totalPages) {
-      setActivePage(value);
-    }
-  };
+  
   return (
     <div>
-      <div style={{ display: "flex", gap: "1rem", marginBottom: "1rem" }}>
-        <button
-          onClick={() => setActivePage((p) => Math.max(0, p - 1))}
-          disabled={activePage === 0}
-        >
-          Back
-        </button>
-
-        <input
-          type="number"
-          min={0}
-          max={totalPages}
-          value={activePage}
-          onChange={handleInputChange}
-          style={{ width: "60px", textAlign: "center" }}
-        />
-
-        <button
-          onClick={() => setActivePage((p) => Math.min(totalPages, p + 1))}
-          disabled={activePage === totalPages}
-        >
-          Next
-        </button>
-      </div>
-
-      <div>{pages[activePage]}</div>
+      {pages[currentPage]}
     </div>
   );
 }

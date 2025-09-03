@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
-
-export default function StartNode() {
+import changePage from "./Navigator";
+export default function StartNode({ goTo }: { goTo: (page: number) => void }) {
   // --- Static values (edit these) ---
   const PRINTED_MESSAGE = "Hello, world!";
   const PAGES = {
@@ -50,9 +50,9 @@ export default function StartNode() {
   return (
     <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
       <main className="flex flex-col gap-6 row-start-2 items-center sm:items-start w-full max-w-xl">
-        <h1 className="text-2xl font-semibold">A Starting Test</h1>
+        <h1 className="text-2xl text-gray-300 font-semibold">A Starting Test</h1>
 
-        <div className="w-full rounded-2xl border border-gray-200 p-6">
+        <div className="w-full rounded-2xl bg-white border border-gray-200 p-6">
           <ol className="list-decimal ml-5 text-sm space-y-2 mb-4">
             <li>
               Open your browser's Console with F12.
@@ -105,17 +105,17 @@ export default function StartNode() {
           <div className="mt-4 min-h-[2.5rem]" aria-live="polite" aria-atomic="true">
             {result === "good" && (
               <div className="rounded-lg bg-green-50 border border-green-200 px-3 py-2 text-sm text-green-800">
-                Well done — go to page <b>{PAGES.good}</b> and read the good option.
+                Well done — <button onClick={() => goTo(PAGES.good)}>Next</button>.
               </div>
             )}
             {result === "neutral" && (
               <div className="rounded-lg bg-yellow-50 border border-yellow-200 px-3 py-2 text-sm text-yellow-800">
-                Not bad — go to page <b>{PAGES.neutral}</b> and read the neutral option.
+                Not bad — <button onClick={() => goTo(PAGES.neutral)}>Next</button>.
               </div>
             )}
             {result === "bad" && (
               <div className="rounded-lg bg-red-50 border border-red-200 px-3 py-2 text-sm text-red-800">
-                Not a great start — go to page <b>{PAGES.bad}</b> and read the bad option.
+                Not a great start — <button onClick={() => goTo(PAGES.bad)}>Next</button>.
               </div>
             )}
           </div>

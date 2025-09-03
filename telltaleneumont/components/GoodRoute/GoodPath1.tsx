@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function GoodPath1() {
+export default function GoodPath1({ goTo }: { goTo: (page: number) => void }) {
 
   const [view, setView] = useState<"main" | "good" | "neutral">("main");
 
@@ -34,7 +34,7 @@ export default function GoodPath1() {
   }
 
   function onClickWon(){
-    setGoodText("good job! proceed to page 3.");
+    setGoodText("good job!.");
   }
   function onClickLost(){
     setRandomProfessor(getRandomProfessor());
@@ -65,6 +65,14 @@ export default function GoodPath1() {
         <div>
           <img src= {randomProfessor} alt="" />
           {goodText}
+          {goodText === "good job!." && (
+    <button
+      onClick={() => goTo(3)}
+      className="rounded-xl px-3 py-2 border border-gray-300 hover:bg-gray-50 m-4"
+    >
+      Next
+    </button>
+  )}
         </div>
         <button onClick={onClickWon} className="rounded-xl px-3 py-2 border border-gray-300 hover:bg-gray-50 m-4">
             I won!
@@ -79,12 +87,14 @@ export default function GoodPath1() {
       content = (
         <>
           <img src="https://cdn7.dissolve.com/p/D187_177_011/D187_177_011_1200.jpg" alt="" />
-          You attend class.... Noting happens... go to page 7
+          You attend class.... Noting happens... <button onClick={() => goTo(7)} className="rounded-xl px-3 py-2 border border-gray-300 hover:bg-gray-50 m-4">
+               Next
+            </button>
         </>
       )
   }
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
+    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 text-white">
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
         {content}
     </main>
